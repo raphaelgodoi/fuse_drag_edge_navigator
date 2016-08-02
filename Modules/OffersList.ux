@@ -1,4 +1,4 @@
-<DockPanel ux:Name="OffersListPage" ux:Class="OffersList" Transition="None">
+<DockPanel ux:Name="OffersListPage" ux:Class="OffersList" Background="#ffffff" Transition="None">
 	<Router ux:Dependency="router" />
 	<JavaScript File="../Controllers/Main.js" />
 	<Text Dock="Top" Alignment="TopCenter"  Value="All Offers" Margin="50"/>
@@ -12,8 +12,12 @@
 
 	<ExitingAnimation>
 		<Move X="0" RelativeTo="Size" Duration="1" Easing="BackOut" />
-		<Change OffersListPage.Opacity="0" Duration="0.2" DurationBack="0.2" />
+		<Change OffersListPage.Opacity="0.5" Duration="0.2" DurationBack="0.2" />
 		<SendToBack Target="OffersListPage" />
 	</ExitingAnimation>
+
+	<EnteringAnimation>
+        <BringToFront Target="OffersListPage" />
+    </EnteringAnimation>
 
 </DockPanel>

@@ -1,21 +1,34 @@
-<Panel ux:Class="OfferPage" ux:Name="teste" Background="#ededed">
+<Panel ux:Class="OfferPage" Transition="None">
     <Router ux:Dependency="router" />
     <JavaScript File="../Controllers/Main.js" />
 
-    <SwipeGesture ux:Name="swipe" Edge="Left" Length="100" Type="Simple" />
+    <SwipeGesture ux:Name="swipe" Edge="Left" LengthNode="Self" Type="Active" />
     <Swiped Source="swipe">
-        <Callback Handler="{goBack}" />
+        <Move X="1" Target="Self" RelativeTo="Size" />
+        <Move X="0" Target="Self" RelativeTo="Size" Delay="0.01" />
+        <SendToBack Target="Self"  Delay="0.01"/>
+        <Callback Handler="{goBack}"  Delay="0.02"/>
     </Swiped>
 
-    <EnteringAnimation>
-        <Move X="1" RelativeTo="Size" Duration="0.5" DurationBack="0.5" Easing="QuadraticIn" />
-        <BringToFront Target="teste" />
-    </EnteringAnimation>
+    <Panel Background="#ffffff" ux:Name="Self">
 
-    <StackPanel Alignment="Center" Padding="20">
-        <Text Value="If You Swipe, it works, but it's not very user friendly." TextWrapping="Wrap" />
-        <Text Value="I need this: drag the left edge to go back, got it?" TextWrapping="Wrap" Margin="0,10" />
-    </StackPanel>
 
-    <DropShadow />
+        <SwipingAnimation Source="swipe">
+            <Move X="1" Target="Self" RelativeTo="Size" />
+        </SwipingAnimation>
+
+        <StackPanel Alignment="Center" Padding="20">
+            <Text Value="If You Swipe, it works, but it's not very user friendly." TextWrapping="Wrap" />
+            <Text Value="I need this: drag the left edge to go back, got it?" TextWrapping="Wrap" Margin="0,10" />
+        </StackPanel>
+
+        <EnteringAnimation>
+            <!-- <Move X="0" Target="Self" RelativeTo="Size" /> -->
+            <BringToFront Target="Self" />
+            <Move X="1" RelativeTo="Size" Delay="0.1" Duration="0.2" DurationBack="0.5" Easing="QuadraticIn"/>
+        </EnteringAnimation>
+
+        <DropShadow />
+
+    </Panel>
 </Panel>

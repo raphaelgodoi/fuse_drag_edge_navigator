@@ -1,0 +1,20 @@
+<Panel ux:Class="DeeperPage" ux:Name="Self" Background="#ededed">
+    <Router ux:Dependency="router" />
+    <JavaScript File="../Controllers/Main.js" />
+
+    <SwipeGesture ux:Name="swipe" Edge="Left" Length="100" Type="Simple" />
+    <Swiped Source="swipe">
+        <Callback Handler="{goBack}" />
+    </Swiped>
+
+    <EnteringAnimation>
+        <Move X="1" RelativeTo="Size" Duration="0.5" DurationBack="0.5" Easing="QuadraticIn" />
+        <BringToFront Target="Self" />
+    </EnteringAnimation>
+
+    <StackPanel Alignment="Center" Padding="20">
+        <Text Value="Depper page MFKR." TextWrapping="Wrap" />
+    </StackPanel>
+
+    <DropShadow />
+</Panel>

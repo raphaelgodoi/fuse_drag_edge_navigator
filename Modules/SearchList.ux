@@ -12,7 +12,7 @@
 
     <ExitingAnimation>
 		<Move X="0" RelativeTo="Size" Duration="1" Easing="BackOut" />
-		<Change SearchListPage.Opacity="0" Duration="0.2" DurationBack="0.2" />
+		<Change SearchListPage.Opacity="0.5" Duration="0.2" DurationBack="0.2" />
 		<SendToBack Target="SearchListPage" />
 	</ExitingAnimation>
 </DockPanel>
