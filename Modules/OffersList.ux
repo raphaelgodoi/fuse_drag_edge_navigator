@@ -12,12 +12,8 @@
 
 	<ExitingAnimation>
 		<Move X="0" RelativeTo="Size" Duration="1" Easing="BackOut" />
-		<Change OffersListPage.Opacity="0.5" Duration="0.2" DurationBack="0.2" />
-		<SendToBack Target="OffersListPage" />
+		<Change OffersListPage.Opacity="0.1" Duration="0.2" DurationBack="1" />
+		<SendToBack Target="OffersListPage"/>
 	</ExitingAnimation>
-
-	<EnteringAnimation>
-        <BringToFront Target="OffersListPage" />
-    </EnteringAnimation>
 
 </DockPanel>
