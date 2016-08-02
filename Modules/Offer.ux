@@ -1,34 +1,28 @@
-<Panel ux:Class="OfferPage" Transition="None">
+<Panel ux:Class="OfferPage" Background="#ffffff" ux:Name="Self" Transition="None">
     <Router ux:Dependency="router" />
     <JavaScript File="../Controllers/Main.js" />
 
     <SwipeGesture ux:Name="swipe" Edge="Left" LengthNode="Self" Type="Active" />
     <Swiped Source="swipe">
         <Move X="1" Target="Self" RelativeTo="Size" />
-        <Move X="0" Target="Self" RelativeTo="Size" Delay="0.01" />
-        <SendToBack Target="Self"  Delay="0.01"/>
-        <Callback Handler="{goBack}"  Delay="0.02"/>
+        <Set swipe.IsActive="False" Delay="0.5" />
+        <Callback Handler="{goBack}" />
     </Swiped>
 
-    <Panel Background="#ffffff" ux:Name="Self">
+    <SwipingAnimation Source="swipe">
+        <Move X="1" Target="Self" RelativeTo="Size" />
+    </SwipingAnimation>
 
+    <StackPanel Alignment="Center" Padding="20">
+        <Text Value="If You Swipe, it works, but it's not very user friendly." TextWrapping="Wrap" />
+        <Text Value="I need this: drag the left edge to go back, got it?" TextWrapping="Wrap" Margin="0,10" />
+    </StackPanel>
 
-        <SwipingAnimation Source="swipe">
-            <Move X="1" Target="Self" RelativeTo="Size" />
-        </SwipingAnimation>
+    <EnteringAnimation>
+        <!-- <Move X="0" Target="Self" RelativeTo="Size" /> -->
+        <BringToFront Target="Self" />
+        <Move X="1" RelativeTo="Size" Delay="0.1" Duration="0.2" DurationBack="0.5" Easing="QuadraticIn"/>
+    </EnteringAnimation>
 
-        <StackPanel Alignment="Center" Padding="20">
-            <Text Value="If You Swipe, it works, but it's not very user friendly." TextWrapping="Wrap" />
-            <Text Value="I need this: drag the left edge to go back, got it?" TextWrapping="Wrap" Margin="0,10" />
-        </StackPanel>
-
-        <EnteringAnimation>
-            <!-- <Move X="0" Target="Self" RelativeTo="Size" /> -->
-            <BringToFront Target="Self" />
-            <Move X="1" RelativeTo="Size" Delay="0.1" Duration="0.2" DurationBack="0.5" Easing="QuadraticIn"/>
-        </EnteringAnimation>
-
-        <DropShadow />
-
-    </Panel>
+    <DropShadow />
 </Panel>
