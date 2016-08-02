@@ -1,0 +1,9 @@
+<Page ux:Class="SearchPage">
+    <Router ux:Dependency="router" />
+    <JavaScript File="../Controllers/Main.js" />
+
+    <Navigator DefaultTemplate="list">
+        <SearchList ux:Template="list" router="router" />
+        <OfferPage ux:Template="offer" router="router" />
+    </Navigator>
+</Page>

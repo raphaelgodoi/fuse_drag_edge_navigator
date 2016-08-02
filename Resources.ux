@@ -1,0 +1,232 @@
+<Panel>
+
+	<Font File="Assets/Fonts/lato/Lato-Bold.ttf" ux:Global="Bold" />
+	<Font File="Assets/Fonts/lato/Lato-Regular.ttf" ux:Global="Regular" />
+	<Font File="Assets/Fonts/lato/Lato-Hairline.ttf" ux:Global="Light" />
+	<Font File="Assets/Fonts/arro_vegur/Vegur-Bold.otf" ux:Global="VegurBold" />
+
+	<float4 ux:Global="Dark"       			ux:Value="#3E2723"/>
+	<float4 ux:Global="Vermelho"			ux:Value="#F44336"/>
+	<float4 ux:Global="MainColorGradient" 	ux:Value="#f77046"/>
+	<float4 ux:Global="MainColor"  			ux:Value="#FF9800"/>
+	<float4 ux:Global="MainColorPressed" 	ux:Value="#F57C00" />
+	<float4 ux:Global="MainColorDisabled" 	ux:Value="#FFE0B2" />
+	<float4 ux:Global="DarkYellow" 			ux:Value="#f9A825"/>
+	<float4 ux:Global="Yellow"     			ux:Value="#ffEB3B"/>
+	<float4 ux:Global="Blue" 				ux:Value="#007bdf"/>
+	<float4 ux:Global="Cyan"       			ux:Value="#E0F7fA"/>
+	<float4 ux:Global="DarkGrey"  		 	ux:Value="#3C3C3C"/>
+	<float4 ux:Global="Grey"       			ux:Value="#B4B4B4"/>
+	<float4 ux:Global="LightGrey"			ux:Value="#f0f0f0"/>
+	<float4 ux:Global="Branco" 				ux:Value="#FFFFFF"/>
+
+	<SolidColor ux:Global="MainBackground" Color="MainColor" />
+	<SolidColor ux:Global="MainBackgroundDisabled" Color="MainColorDisabled" />
+	<SolidColor ux:Global="MainBackgroundPressed" Color="MainColorPressed" />
+	<SolidColor ux:Global="WhiteBackground" Color="Branco" />
+	<SolidColor ux:Global="DarkGreyBackground" Color="DarkGrey" />
+	<SolidColor ux:Global="GreyBackground" Color="Grey" />
+	<SolidColor ux:Global="LightGreyBackground" Color="LightGrey" />
+	<SolidColor ux:Global="VermelhoBackground" Color="Vermelho" />
+	<SolidColor ux:Global="SeparatorBorder" Color="#EDEDED" />
+	<SolidColor ux:Global="BrancoBackground" Color="Branco" />
+	<SolidColor ux:Global="BlueBackground" Color="Blue" />
+
+	<Text ux:Class="HeaderText"  Font="Bold" FontSize="16" Color="DarkGrey" Margin="0,0,0,10"/>
+	<Text ux:Class="RegularText" Font="Regular" FontSize="16" Color="DarkGrey"/>
+	<Text ux:Class="RegularTextBold" Font="Bold" FontSize="16" Color="DarkGrey"/>
+	<RegularText ux:Class="InfoText" FontSize="11"  Color="Grey" Margin="10,0,0,10" />
+	<HeaderText ux:Class="HeaderTextLight" Color="#ffffff" />
+	<RegularText ux:Class="RegularTextLight" Color="#ffffff" />
+	<RegularTextBold ux:Class="RegularTextBoldLight" Color="#ffffff" />
+	<RegularText ux:Class="IconText" Color="DarkGrey" FontSize="11" Alignment="BottomCenter" />
+	<RegularTextBold ux:Class="ButtonText" Color="#ffffff" TextAlignment="Center" Alignment="Center" />
+
+	<Rectangle ux:Class="Hr" Height="1" Fill="#ccc" Opacity="0.3" Margin="0,10,0,10"/>
+	<Rectangle ux:Class="HairLine" Height="1" Opacity="1"/>
+
+	<StackPanel Orientation="Horizontal" ux:Class="Li">
+		<Circle Color="DarkGrey" Margin="5,0,5,0" Width="5" Height="5"/>
+		<RegularText Color="DarkGrey" Value="{condition}"/>
+	</StackPanel>
+
+	<StackPanel ux:Class="SettingsItem">
+		<string ux:Property="ItemText" />
+		<bool ux:Property="Separator" />
+		<bool ux:Property="ArrowRight" />
+		<bool ux:Property="PressedColor" />
+
+		<Rectangle ux:Name="Item" Fill="WhiteBackground" Padding="10">
+			<RegularText Value="{Property this.ItemText}" />
+			<WhileTrue Value="{Property this.ArrowRight}">
+				<Image File="Assets/Icons/ArrowRight.png" Height="15" Alignment="CenterRight"/>
+			</WhileTrue>
+			<WhileTrue Value="{Property this.ArrowRight}">
+				<WhilePressed>
+					<Change Item.Fill="#EAEAEA" />
+				</WhilePressed>
+			</WhileTrue>
+		</Rectangle>
+
+		<WhileTrue Value="{Property this.Separator}">
+			<HairLine Fill="SeparatorBorder" Margin="10,0,0,0" />
+		</WhileTrue>
+	</StackPanel>
+
+
+	<Panel ux:Class="SearchItem" ux:Name="Self">
+		<Rectangle ux:Name="Item">
+			<Text Margin="10,10" Font="Bold" Color="DarkGrey" FontSize="18" Value="{raw_search}" />
+		</Rectangle>
+
+		<WhilePressed>
+			<Change Self.Background="LightGreyBackground" Delay="0.2" Duration="0.1" />
+		</WhilePressed>
+	</Panel>
+
+	<StackPanel ux:Class="ItemGroup" Background="WhiteBackground" Offset="0,1" Padding="0,1,0,1">
+		<Rectangle Layer="Background">
+			<Stroke Width="1" Brush="SeparatorBorder" />
+		</Rectangle>
+	</StackPanel>
+
+	<Rectangle ux:Class="Divider" Fill="#F9F9F9" Padding="10">
+		<string ux:Property="Text" />
+		<InfoText Value="{Property this.Text}" Margin="0,10,0,0"/>
+	</Rectangle>
+
+	<!-- Notification Item -->
+	<Rectangle ux:Class="Notification"  Fill="WhiteBackground" Offset="0,-1" Padding="10">
+		<Grid Columns="auto,1*,auto" Height="40">
+
+			<Rectangle Alignment="CenterLeft" Width="40" Height="40" Margin="0,0,10,0" CornerRadius="3">
+				<ImageFill Url="{image}" StretchMode="UniformToFill" />
+			</Rectangle>
+
+			<StackPanel Alignment="CenterLeft">
+				<RegularText Value="{title}"/>
+				<RegularText Value="{description}" FontSize="13" Color="Grey" />
+			</StackPanel>
+
+			<StackPanel Alignment="CenterRight" >
+                <RegularText Value="{original_price}" FontSize="10" TextColor="Grey" TextAlignment="Right" />
+                <RegularTextBold Value="{price}"  TextColor="Red" TextAlignment="Right" />
+            </StackPanel>
+		</Grid>
+
+		<Stroke Width="1" Brush="SeparatorBorder" />
+	</Rectangle>
+
+	<!-- Credit Card -->
+	<Rectangle ux:Class="CreditCard" CornerRadius="10" Height="120" Width="200">
+		<Image File="Assets/Icons/visa.png" Height="15" Margin="0,10,20,0" Alignment="TopRight" />
+		<Image File="Assets/Icons/Chip.png" Height="25" Margin="20,20,0,0" Alignment="TopLeft" />
+
+		<RegularTextLight Value="0000 0000 0000 0000" Alignment="Center" Margin="0,10,0,0">
+			<DropShadow Distance="1" Size="1" Spread="0.1" Color="Dark" />
+		</RegularTextLight>
+
+		<RegularTextLight Value="12/2021" Alignment="CenterRight" FontSize="11" Margin="0,45,20,0">
+			<DropShadow Distance="1" Size="1" Spread="0.1" Color="Dark" />
+		</RegularTextLight>
+
+		<RegularTextLight Value="RAPHAEL GODOI ROCCA TOSTA" FontSize="11" Alignment="BottomCenter" Margin="20,0,20,10">
+			<DropShadow Distance="1" Size="1" Spread="0.1" Color="Dark" />
+		</RegularTextLight>
+
+		<LinearGradient Opacity="1" >
+			<GradientStop Offset="0" Color="#0D98C9"/>
+			<GradientStop Offset="1" Color="#005387"/>
+		</LinearGradient>
+
+		<DropShadow Distance="3" Size="10" Spread="0.1" Color="Grey"  />
+	</Rectangle>
+
+	<Image ux:Class="Logo" File="Assets/Logo/Normal.png"/>
+	<Image ux:Class="LogoInverse" File="Assets/Logo/White.png"/>
+	<Image ux:Class="Icon" Margin="0,3,0,0" Height="22" Alignment="TopCenter"/>
+
+	<TextInput ux:Class="SearchBox" ActionStyle="Search" PlaceholderText="Pesquisar" Padding="3" Margin="15,10,15,0" TextColor="#000" PlaceholderColor="#444">
+		<Panel Width="28" Height="28" Dock="Right" >
+			<Circle Color="#eee" Padding="6">
+				<Rectangle Color="#888" Height="2">
+					<Rotation Degrees="45" />
+				</Rectangle>
+				<Rectangle Color="#888" Height="2">
+					<Rotation Degrees="-45" />
+				</Rectangle>
+			</Circle>
+			<Clicked>
+				<Set Target="this.Value" Value="" />
+			</Clicked>
+		</Panel>
+		<Rectangle Layer="Background" Fill="#F9F9F9" CornerRadius="5" />
+	</TextInput>
+
+	<RangeControl ux:Class="CustomSlider" Width="100%" Padding="16,2,16,2" Margin="2" >
+		<LinearRangeBehavior />
+		<Panel>
+			<Circle Anchor="50%,50%" ux:Name="thumb" Alignment="Left" Color="MainColor" Width="28" Height="28" />
+		</Panel>
+		<Rectangle Layer="Background" Color="MainColor" CornerRadius="45" Height="2px"/>
+		<ProgressAnimation>
+			<Move Target="thumb" X="1" RelativeTo="ParentSize" />
+		</ProgressAnimation>
+	</RangeControl>
+
+	<Rectangle ux:Class="FilterType" Dock="Left" Fill="#ffffff" CornerRadius="5" Height="70" Width="80" Margin="0,0,10,0">
+        <string ux:Property="ItemText" />
+        <FileSource ux:Property="Icon" />
+        <bool ux:Property="Show" />
+
+		<Rectangle ux:Name="Icone" Fill="GreyBackground" Alignment="Center" Height="25" Width="25" Offset="0,-7">
+            <Mask File="{Property this.Icon}" Mode="Alpha" />
+        </Rectangle>
+
+		<RegularTextBold ux:Name="IconText" Color="Grey" FontSize="13" Margin="5" Offset="0,-3" Value="{Property this.ItemText}" Alignment="BottomCenter" />
+
+		<WhileTrue Value="{Property this.Show}">
+            <Change Icone.Fill="MainBackground" />
+			<Change IconText.Color="MainColor" />
+        </WhileTrue>
+    </Rectangle>
+
+	<Panel ux:Class="CategoryListItem" ux:Name="Self" Padding="10,2,10,2">
+		<RegularTextBold ux:Name="CategoryLabel" Value="{label}" Color="Grey" FontSize="15" Margin="0,10,0,0" />
+
+		<WhileFalse Value="{isRootCategory}">
+			<Change CategoryLabel.FontSize="20" />
+			<Change CategoryLabel.Color="DarkGrey" />
+			<Change CategoryLabel.Margin="0,3" />
+
+			<WhilePressed>
+				<Change Self.Background="LightGreyBackground" Delay="0.2"/>
+			</WhilePressed>
+
+			<Clicked>
+				<Change Self.Background="LightGreyBackground" Delay="0.2" DelayBack="1"/>
+				<Callback Handler="{click}" />
+			</Clicked>
+		</WhileFalse>
+	</Panel>
+
+	<StackPanel ux:Class="Rating" ux:Name="Self" Margin="0,0,0,20">
+
+		<RegularText Value="{title}" Margin="0,10" />
+
+		<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal">
+				<Each Count="{rating}">
+					<Star Fill="MainBackground" Width="12" Height="12" Ratio="0.4" Points="5" />
+				</Each>
+				<Each Count="{greystars}">
+					<Star Fill="LightGreyBackground" Width="12" Height="12" Ratio="0.4" Points="5" />
+				</Each>
+			</StackPanel>
+			<RegularText Value="{created_at}" FontSize="12" TextColor="Grey" />
+		</StackPanel>
+
+		<RegularText Value="{description}" TextColor="Grey" Alignment="Left" TextWrapping="Wrap" Margin="0,10" />
+	</StackPanel>
+
+</Panel>

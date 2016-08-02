@@ -1,0 +1,5 @@
+<Page ux:Class="IntroPage">
+    <Router ux:Dependency="router" />
+    <Text Value="INTRO" Alignment="Center" />
+    
+</Page>

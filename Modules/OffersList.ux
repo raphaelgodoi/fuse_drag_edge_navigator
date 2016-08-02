@@ -1,0 +1,19 @@
+<DockPanel ux:Name="OffersListPage" ux:Class="OffersList" Transition="None">
+	<Router ux:Dependency="router" />
+	<JavaScript File="../Controllers/Main.js" />
+	<Text Dock="Top" Alignment="TopCenter"  Value="All Offers" Margin="50"/>
+	<StackPanel>
+		<Each Count="5">
+			<Rectangle Margin="15" CornerRadius="5" Padding="10" Fill="#0085ff" Clicked="{goToOfferFromMain}">
+				<Text Value="open item" Color="#fff" />
+			</Rectangle>
+		</Each>
+	</StackPanel>
+
+	<ExitingAnimation>
+		<Move X="0" RelativeTo="Size" Duration="1" Easing="BackOut" />
+		<Change OffersListPage.Opacity="0" Duration="0.2" DurationBack="0.2" />
+		<SendToBack Target="OffersListPage" />
+	</ExitingAnimation>
+
+</DockPanel>

@@ -1,0 +1,19 @@
+{
+  "Version": "0.0.0",
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.GeoLocation",
+    "Fuse.Launcher",
+    "Fuse.PushNotifications",
+    "Fuse.BasicTheme",
+    "Uno.Collections",
+    "Uno.Geometry"
+  ],
+  "Includes": [
+    "*",
+    "Controllers/*.js:Bundle",
+    "Views/*.ux:UXFile",
+    "Modules/*.js:Bundle"
+  ]
+}

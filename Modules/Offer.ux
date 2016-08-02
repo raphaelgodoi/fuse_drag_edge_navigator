@@ -1,0 +1,21 @@
+<Panel ux:Class="OfferPage" ux:Name="teste" Background="#ededed">
+    <Router ux:Dependency="router" />
+    <JavaScript File="../Controllers/Main.js" />
+
+    <SwipeGesture ux:Name="swipe" Edge="Left" Length="100" Type="Simple" />
+    <Swiped Source="swipe">
+        <Callback Handler="{goBack}" />
+    </Swiped>
+
+    <EnteringAnimation>
+        <Move X="1" RelativeTo="Size" Duration="0.5" DurationBack="0.5" Easing="QuadraticIn" />
+        <BringToFront Target="teste" />
+    </EnteringAnimation>
+
+    <StackPanel Alignment="Center" Padding="20">
+        <Text Value="If You Swipe, it works, but it's not very user friendly." TextWrapping="Wrap" />
+        <Text Value="I need this: drag the left edge to go back, got it?" TextWrapping="Wrap" Margin="0,10" />
+    </StackPanel>
+
+    <DropShadow />
+</Panel>

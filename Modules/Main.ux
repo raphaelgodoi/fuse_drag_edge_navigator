@@ -1,0 +1,23 @@
+<Page ux:Class="MainPage">
+    <Router ux:Dependency="router" />
+
+    <Grid ux:Name="Menu" Columns="1*,1*" Height="45" Alignment="Bottom">
+
+        <JavaScript File="../Controllers/Main.js" />
+
+        <Rectangle Layer="Background" Fill="#dedede" Opacity="0.95"/>
+
+        <Panel Clicked="{goToOffers}" Height="45" HitTestMode="LocalBoundsAndChildren">
+            <Text Value="List" Alignment="Center"/>
+        </Panel>
+
+        <Panel Clicked="{goToSearch}" Height="45" HitTestMode="LocalBoundsAndChildren">
+            <Text Value="Search" Alignment="Center"/>
+        </Panel>
+    </Grid>
+
+    <PageControl Active="offers" Interaction="None" Transition="None" TransitionDuration="0" >
+        <OffersPage ux:Name="offers" router="router" />
+        <SearchPage ux:Name="search" router="router" />
+    </PageControl>
+</Page>
