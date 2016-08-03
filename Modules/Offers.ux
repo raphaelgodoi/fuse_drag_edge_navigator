@@ -1,10 +1,39 @@
-<Page ux:Class="OffersPage">
-    <Router ux:Dependency="router" />
-    <JavaScript File="../Controllers/Main.js" />
+<Page ux:Name="OffersPage" ux:Class="OffersPage" Background="#ffffff" Transition="None">
+	<Router ux:Dependency="router" />
 
-    <Navigator DefaultTemplate="list">
-        <OffersList ux:Template="list" router="router" />
-        <OfferPage ux:Template="offer" router="router" />
-        <DeeperPage ux:Template="deeper" router="router" />
-    </Navigator>
+	<StateGroup ux:Name="OfferState" Rest="hideOffer">
+		<State Name="hideOffer">
+			<DebugAction Message="Entrou no estado hideOffer" />
+			<Move X="1" Duration="0.2" Target="Offer" RelativeTo="Size" />
+			<Set swipeOffer.IsActive="True" />
+		</State>
+
+		<State Name="showOffer">
+			<Set swipeOffer.IsActive="False" />
+			<DebugAction Message="Entrou no estado showOffer" />
+			<Move X="0" Duration="0.2" Target="Offer" RelativeTo="Size" />
+		</State>
+	</StateGroup>
+
+	<ux:Include File="Offer.ux" />
+
+	<Text Dock="Top" Alignment="TopCenter"  Value="All Offers" Margin="50"/>
+
+	<StackPanel>
+		<Each Count="5">
+			<Rectangle Margin="15" CornerRadius="5" Padding="10" Fill="#0085ff">
+				<Text Value="open item" Color="#fff" />
+
+				<Clicked>
+					<Set OfferState.Active="showOffer" />
+				</Clicked>
+			</Rectangle>
+		</Each>
+	</StackPanel>
+
+	<ExitingAnimation>
+		<Move X="0" RelativeTo="Size" Duration="1" Easing="BackOut" />
+		<Change OffersPage.Opacity="0.1" Duration="0.2" DurationBack="1" />
+		<SendToBack Target="OffersPage"/>
+	</ExitingAnimation>
 </Page>

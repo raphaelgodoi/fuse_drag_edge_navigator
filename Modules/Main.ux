@@ -1,16 +1,12 @@
 <Page ux:Class="MainPage">
     <Router ux:Dependency="router" />
+    <JavaScript File="../Controllers/Navigator.js" />
 
     <Grid ux:Name="Menu" Columns="1*,1*" Height="45" Alignment="Bottom">
-
-        <JavaScript File="../Controllers/Main.js" />
-
         <Rectangle Layer="Background" Fill="#dedede" Opacity="0.95"/>
-
         <Panel Clicked="{goToOffers}" Height="45" HitTestMode="LocalBoundsAndChildren">
             <Text Value="List" Alignment="Center"/>
         </Panel>
-
         <Panel Clicked="{goToSearch}" Height="45" HitTestMode="LocalBoundsAndChildren">
             <Text Value="Search" Alignment="Center"/>
         </Panel>

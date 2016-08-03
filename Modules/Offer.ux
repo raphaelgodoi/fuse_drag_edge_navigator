@@ -1,25 +1,38 @@
-<Panel ux:Class="OfferPage" Background="#ffffff" ux:Name="Self" Transition="None">
-    <Router ux:Dependency="router" />
-    <JavaScript File="../Controllers/Main.js" />
-
-    <SwipeGesture ux:Name="swipe" Edge="Left" LengthNode="Self" Type="Active" />
-    <Swiped Source="swipe">
-        <Move X="1" Target="Self" RelativeTo="Size" />
-        <Set swipe.IsActive="False" Delay="0.2" />
-        <Callback Handler="{goBack}" />
-    </Swiped>
-
-    <SwipingAnimation Source="swipe">
-        <Move X="1" Target="Self" RelativeTo="Size" />
-    </SwipingAnimation>
+<Panel Background="#ffffff" ux:Name="Offer">
 
     <EnteringAnimation>
-        <BringToFront Target="Self" />
+        <BringToFront Target="Offer" />
         <Move X="1" RelativeTo="Size" Duration="0.2" DurationBack="0.2" Easing="QuadraticIn"/>
     </EnteringAnimation>
 
+    <SwipeGesture ux:Name="swipeOffer" Edge="Left" LengthNode="Offer" Type="Active" />
+    <Swiped Source="swipeOffer">
+        <Set OfferState.Active="hideOffer" />
+    </Swiped>
+
+    <SwipingAnimation Source="swipeOffer">
+        <Move X="1" Target="Offer" RelativeTo="Size" />
+    </SwipingAnimation>
+
+
+    <StateGroup ux:Name="CompanyState" Rest="hideCompany">
+		<State Name="hideCompany">
+			<DebugAction Message="Entrou no estado hideCompany" />
+			<Move X="1" Duration="0.2" Target="Company" RelativeTo="Size" />
+			<Set swipe.IsActive="True" />
+		</State>
+
+		<State Name="showCompany">
+			<Set swipe.IsActive="False" />
+			<DebugAction Message="Entrou no estado showCompany" />
+			<Move X="0" Duration="0.2" Target="Company" RelativeTo="Size" />
+		</State>
+	</StateGroup>
+
+	<ux:Include File="Company.ux" />
+
     <StackPanel Alignment="Center" Padding="20">
-        <Text Value="Swipe left to see the swipe working." Margin="0,0,0,30" TextWrapping="Wrap" />
+        <Text Value="Swipe left to see the swipeOffer working." Margin="0,0,0,30" TextWrapping="Wrap" />
 
         <Text Value="Click on back button to see a bug, a litte blink." Margin="0,0,0,10" TextWrapping="Wrap" />
         <Text Value="This is because when you go back, fuse bring the last page to front before the animation ends." FontSize="13" Margin="0,0,0,30" TextWrapping="Wrap" />
@@ -28,8 +41,17 @@
             <Text Value="Back" TextColor="#fff" Alignment="Center" />
 
             <Clicked>
-                <Callback Handler="{goBack}" />
-                <BringToFront Target="Self" />
+                <Set OfferState.Active="hideOffer" />
+            </Clicked>
+        </Rectangle>
+
+        <Rectangle Height="1" Fill="#cdcdcd" Margin="0,10" />
+
+        <Rectangle HitTestMode="LocalBounds" Margin="0,10" CornerRadius="5" Padding="10" Fill="#475e71">
+            <Text Value="Go Deeper" TextColor="#fff" Alignment="Center" />
+
+            <Clicked>
+                <Set CompanyState.Active="showCompany" />
             </Clicked>
         </Rectangle>
     </StackPanel>

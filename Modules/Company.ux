@@ -1,0 +1,26 @@
+<Panel Background="#ffffff" ux:Name="Company">
+
+    <SwipeGesture ux:Name="swipe" Edge="Left" LengthNode="Company" Type="Active" />
+    <Swiped Source="swipe">
+        <Set CompanyState.Active="hideCompany" />
+    </Swiped>
+
+    <SwipingAnimation Source="swipe">
+        <Move X="1" Target="Company" RelativeTo="Size" />
+    </SwipingAnimation>
+
+    <EnteringAnimation>
+        <BringToFront Target="Company" />
+        <Move X="1" RelativeTo="Size" Duration="0.2" DurationBack="0.2" Easing="QuadraticIn"/>
+    </EnteringAnimation>
+
+    <StackPanel Alignment="Center" Padding="20">
+        <Text Value="Company Page" Margin="0,0,0,30" TextWrapping="Wrap" />
+    </StackPanel>
+
+    <Clicked>
+        <Set CompanyState.Active="hideCompany" />
+    </Clicked>
+
+    <DropShadow />
+</Panel>

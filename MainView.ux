@@ -1,5 +1,4 @@
 <App>
-	<JavaScript File="Controllers/Main.js" />
 	<Router ux:Name="router" />
 	<Navigator DefaultTemplate="main">
         <IntroPage ux:Template="intro" router="router" />
